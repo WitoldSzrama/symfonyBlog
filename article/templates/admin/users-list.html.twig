@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List{% endblock %}
+
+{% block body %}
+
+<table>
+    <tr>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Set Admin Role</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                {% for role in user.getRoles %}
+                    {{ role }}, <br>
+                {% endfor %}
+            </td>
+            <td><a href="{{ path('admin_role',{id:user.id}) }}">Add/Remove</a></td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

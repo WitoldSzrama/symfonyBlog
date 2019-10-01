@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="article-box">
+    <div class="article-title"><h3>{{ article.title }}</h3></div>
+
+    <div class="article-content"><p>{{ article.content }}</p></div>
+    <div class="article-footer">
+        <p>{{ article.author.name}}</p>
+        <p>Created {{ article.createdAt|date("d/m/Y") }}</p>
+    </div>
+</div>
+{{ form_start(commentForm) }}
+{{ form_row(commentForm.author, {'attr': {'value': app.user ? app.user.name :'' }}) }}
+{{ form_row(commentForm.content) }}
+<button class="btn">Add</button>
+{{ form_end(commentForm) }}
+{% if article.comments %}
+    {% for comment in article.comments %}
+    <div class="comment-box">
+        <div class="comment-author">{{ comment.author }}</div>
+        <div class="comment-content">{{ comment.content }}</div>
+    </div>
+{% else %}
+    <p>There is no comments, be the first one :)</p>
+{% endfor %}
+
+{% endif %}
+
+
+
+
+{% endblock %}

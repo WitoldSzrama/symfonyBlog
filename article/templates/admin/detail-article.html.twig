@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="article-box">
+    <div class="article-title"><h3>{{ article.title }}</h3></div>
+
+    <div class="article-content"><p>{{ article.content }}</p></div>
+    <div class="article-footer">
+        <p>{{ article.author.name}}</p>
+        <p>Created {{ article.createdAt|date("d/m/Y") }}</p>
+    </div>
+    <div class="articles-btns">
+        {% if app.user == article.author %}
+            <a href="{{ path('edit_article',{ id: article.id}) }}">Edit</a>
+        {% endif %}  
+        {% if app.user.roles[0]=="ROLE_ADMIN" %}
+            <a href="{{ path('publish',{ id: article.id}) }}">Publish</a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List{% endblock %}
+
+{% block body %}
+
+
+{% if articles %}
+    <table>
+        <tr>
+            <th>Article name</th>
+            <th>Created</th>
+            <th>Author</th>
+            <th>Published</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Details</th>
+
+        </tr>
+        
+        {% for article in articles %}
+
+        {% if article.author == app.user or app.user.roles[0] == "ROLE_ADMIN" %}
+        <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.createdAt| date('d/m/Y') }}</td>
+                <td>{{ article.author.name }}</td>
+                <td>{{ article.published == true ? 'Yes':'No' }}</td>
+                <td>
+                    {% if app.user == article.author %}
+                        <a href="{{ path('edit_article',{ id: article.id}) }}">Edit</a>
+                    {% else %}
+                            <p>Author only </p>
+                            
+                    {% endif %}
+                    </td>
+                <td> 
+                    {% if app.user == article.author %}
+                        <a href="{{ path('delete',{ id: article.id}) }}">Delete</a>  
+                    {% else %}
+                        <p>Author only </p>
+                    {% endif %}
+                    </td>
+                <td><a href="{{ path('detail_article',{ id: article.id}) }}">Article Details</a></td>
+            </tr> 
+        {% else %}
+            <h3>You have not write any article yet. Tell us your story</h3>
+        {% endif %}
+        
+
+
+        {% endfor %}
+    </table>
+{% else %}
+    <h4>O jezz there is no articles, quick <a href="{{ path('new_article') }}">create</a>  some</h4>
+{% endif %}
+
+
+{% endblock %}

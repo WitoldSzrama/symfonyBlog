@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<a href="{{ path('new_article') }}">Create an Article</a>
+<a href="{{ path('list') }}">All articles</a>
+<a href="{{ path('users_list') }}">Users List</a>
+{% endblock %}

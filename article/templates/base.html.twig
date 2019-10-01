@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    </head>
+    <body>
+            <nav class="nav-bar">
+                    <a href="{{ path('main') }}">main</a>       
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}">logout</a>
+                        <a href="{{ path('admin') }}">admin</a>                 
+                    {% else %}
+                        <a href="{{ path('app_login') }}">login</a> 
+                        <a href="{{ path('app_register') }}">register</a>   
+                    {% endif %}
+                </nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

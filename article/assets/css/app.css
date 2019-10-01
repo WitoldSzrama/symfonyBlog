@@ -1,0 +1,40 @@
+/* 
+#FFF    white
+#DCDCDC grey
+#80A600 green
+#004B76 light-blue
+#00304C dark-blue
+*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+}
+
+html{
+    font-size: 62.5%;
+}
+body {
+    background-color: grey;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #80A600;
+}
+.nav-bar > *{
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: #FFF;
+    padding: 1rem;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    text-align: center;
+}

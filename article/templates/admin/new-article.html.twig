@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+{{ form_start(articleForm) }}
+{{ form_row(articleForm.title) }}
+{{ form_row(articleForm.content) }}
+<button class="btn">Create</button>
+{{ form_end(articleForm) }}
+{% endblock %}
